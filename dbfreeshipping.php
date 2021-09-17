@@ -252,9 +252,19 @@ class Dbfreeshipping extends Module
         $remains_calc = round((float)$free - (float)$total_cart, 2);
         $remains = $this->context->currentLocale->formatNumber($remains_calc).$this->context->currency->symbol;
         $porcent = round((float)$total_cart * 100 / (float)$free, 0);
+
         if ((float)$total_cart > (float)$free) {
             $is_free = true;
             $porcent = 100;
+        }
+
+        $id_product = Tools::getValue('id_product');
+
+        if ($id_product) {
+            $price = Product::getPriceStatic($id_product);
+            if ((float)$price >= (float)$free) {
+                $product_free_shipping = true;
+            }
         }
 
         return array(
@@ -262,19 +272,23 @@ class Dbfreeshipping extends Module
             'porcent' => $porcent,
             'remains' => $remains,
             'free' => $free_show,
+            'product_free_shipping' => $product_free_shipping
         );
     }
 
     public function hookdisplayProductAdditionalInfo()
     {
-
         $shipping = $this->getFreeShippingTotal();
+
         $this->context->smarty->assign(array(
             'free' => $shipping['free'],
             'is_free' => $shipping['is_free'],
             'remains' => $shipping['remains'],
             'porcent' => $shipping['porcent'],
-        ));
+            'product_free_shipping' => $shipping['product_free_shipping'],
+            )
+        );
+
         return $this->display(__FILE__, 'views/templates/hook/product.tpl');
     }
 
