@@ -222,7 +222,8 @@ class Dbfreeshipping extends Module
 
     public function hookDisplayNav2()
     {
-        $free = $this->context->currentLocale->formatNumber(Configuration::get('DBFREESHIPPING_VALUE')).$this->context->currency->symbol;
+        $free_minimal = (int)Configuration::get('DBFREESHIPPING_VALUE');
+        $free = $this->context->currentLocale->formatNumber($free_minimal).$this->context->currency->symbol;
 
         $this->context->smarty->assign('free', $free);
         return $this->display(__FILE__, 'views/templates/hook/nav.tpl');
