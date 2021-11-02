@@ -243,6 +243,7 @@ class Dbfreeshipping extends Module
         $is_free = false;
         $free = Configuration::get('DBFREESHIPPING_VALUE');
         $free_show = $this->context->currentLocale->formatNumber($free).$this->context->currency->symbol;
+		$product_free_shipping = false;
 
         $total_cart = 0;
         if($this->context->cart->id) {
