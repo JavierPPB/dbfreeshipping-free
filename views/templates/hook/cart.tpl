@@ -19,7 +19,7 @@
 
 <div class="dbfreeshipping_cart">
     <span class="dbfreeshipping">
-        <i class="material-icons">local_shipping</i>
+        <i class="fa-solid fa-truck"></i>
         {l s='Envios gratis a partir de'} {$free}
     </span>
 </div>
