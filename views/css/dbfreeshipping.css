@@ -26,9 +26,9 @@
 * to avoid any conflicts with others containers.
 */
 
+/*PRODUCT*/
 .header-nav .dbfreeshipping {
     margin: 0;
-    color: #232323;
     width: 100%;
     display: block;
     text-align: right;
@@ -37,47 +37,65 @@
 #product .dbfreeshipping {
     margin-top: 1rem;
     margin-bottom: 0;
-    color: #232323;
     width: 100%;
     display: block;
     text-align: center;
 }
-
 #product .header-nav .dbfreeshipping {
     margin: 0;
 }
-
 #product .header-nav .displayNav2 .dbfreeshipping {
     float: right;
     width: auto;
 }
 
+/*CART*/
 .dbfreeshipping_cart .dbfreeshipping {
     text-align: center;
-    color: #232323;
     width: 100%;
     display: table;
+    font-size: 13px;
+    line-height: 21px;
+    margin-bottom: 8px;
 }
-
+.dbfreeshipping_cart .dbfreeshipping.hide {
+    display: none;
+}
 .dbfreeshipping_cart {
-    padding: 1rem;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    padding: 16px;
+    border-bottom: 1px solid #E0E0E0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-
 .dbfreeshipping_cart .free_pogress {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
+    width: 80%;
+    font-size: 15px;
+    line-height: 24px;
 }
-
 .dbfreeshipping_cart .free_pogress .progress {
     width: 60%;
     margin: 0;
-    border-radius: 10px;
+    border-radius: 8px;
+    background-color: #F1F0F0;
+    height: 8px;
+}
+.dbfreeshipping_cart .free_pogress .progress .progress-bar {
+    background-color: #666666;
 }
 
-.dbfreeshipping_cart .free_pogress .progress .progress-bar {
-    background-color: #2fb5d2;
+/*MODAL CART*/
+#blockcart-modal .dbfreeshipping_cart {
+    width: 100%;
+}
+#blockcart-modal .dbfreeshipping_cart .dbfreeshipping {
+    margin-top: 0;
+}
+#blockcart-modal .dbfreeshipping_cart .dbfreeshipping.hide {
+    display: none;
 }

@@ -36,7 +36,7 @@ class Dbfreeshipping extends Module
     {
         $this->name = 'dbfreeshipping';
         $this->tab = 'front_office_features';
-        $this->version = '1.0.1';
+        $this->version = '1.1.0';
         $this->author = 'DevBlinders';
         $this->need_instance = 0;
 
@@ -218,6 +218,11 @@ class Dbfreeshipping extends Module
     public function hookDisplayHeader()
     {
         $this->context->controller->addCSS($this->_path.'/views/css/dbfreeshipping.css');
+        $this->context->controller->addJS($this->_path . '/views/js/dbfreeshipping.js');
+
+        Media::addJsDef(array(
+            'dbfreeshipping_ajax' => Context::getContext()->link->getModuleLink('dbfreeshipping', 'ajax', array()),
+        ));
     }
 
     public function hookDisplayNav2()
@@ -280,8 +285,11 @@ class Dbfreeshipping extends Module
 
     public function hookdisplayProductAdditionalInfo()
     {
-        $shipping = $this->getFreeShippingTotal();
+        if(Configuration::get('DBFREESHIPPING_LIVE_PRODUCT') == false) {
+            return;
+        }
 
+        $shipping = $this->getFreeShippingTotal();
         $this->context->smarty->assign(array(
             'free' => $shipping['free'],
             'is_free' => $shipping['is_free'],
@@ -296,6 +304,9 @@ class Dbfreeshipping extends Module
 
     public function hookdisplayShoppingCart()
     {
+        if(Configuration::get('DBFREESHIPPING_LIVE_CART') == false) {
+            return;
+        }
 
         $shipping = $this->getFreeShippingTotal();
         $this->context->smarty->assign(array(
