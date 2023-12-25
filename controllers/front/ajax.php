@@ -18,7 +18,7 @@ class dbfreeshippingajaxModuleFrontController extends ModuleFrontController
         if($action === 'update_cart'){
             $cart = $this->module->getFreeShippingTotal();
         }
-        die(Tools::jsonEncode(array('cart' => $cart)));
+        die(json_encode(array('cart' => $cart))); //Para que funcione con PS 8
     }
 
 }
