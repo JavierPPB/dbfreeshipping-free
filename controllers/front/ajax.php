@@ -15,10 +15,12 @@ class dbfreeshippingajaxModuleFrontController extends ModuleFrontController
     public function displayAjax()
     {
         $action = Tools::getValue('action');
+        $cart = array();
+        
         if($action === 'update_cart'){
             $cart = $this->module->getFreeShippingTotal();
         }
-        die(Tools::jsonEncode(array('cart' => $cart)));
+        die(json_encode(array('cart' => $cart)));
     }
 
 }
